@@ -1,9 +1,15 @@
 ﻿using System.Text;
 
+Console.OutputEncoding = Encoding.UTF8;
+
 var rand = new Random();
-const string charPool = 
-    "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%𓆣";
+var charPool = 
+    "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%𓆣"
+    .EnumerateRunes()
+    .ToArray();
+
 Console.WriteLine("Password generator. Type q to quit");
+
 while (true)
 {
     Console.Write("\nEnter number of chars: ");
