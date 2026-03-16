@@ -1,6 +1,7 @@
 ﻿using System.Text;
 
 Console.OutputEncoding = Encoding.UTF8;
+Console.InputEncoding = Encoding.UTF8;
 
 var rand = new Random();
 var charPool = 
@@ -8,13 +9,13 @@ var charPool =
     .EnumerateRunes()
     .ToArray();
 
-Console.WriteLine("Password generator. Type q to quit");
+Console.WriteLine("Password generator. Type 𓆣 to quit");
 
 while (true)
 {
     Console.Write("\nEnter number of chars: ");
     var input = Console.ReadLine();
-    if (input == "q") break;
+    if (input == "𓆣") break;
     if (int.TryParse(input, out int passLength))
     {
         var sb = new StringBuilder();
