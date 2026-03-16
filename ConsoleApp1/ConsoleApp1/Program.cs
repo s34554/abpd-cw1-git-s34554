@@ -24,10 +24,31 @@ while (true)
             var index = rand.Next(charPool.Length);
             sb.Append(charPool[index]);
         }
-        Console.WriteLine(sb.ToString());
+        Console.WriteLine("Generated password: " + sb +
+                          "\n Password strength: " +
+                          CheckPasswordStrength(sb.ToString()));
     }
     else
     {
         Console.WriteLine("Invalid input. Try again");
     }
+}
+
+return;
+
+static string CheckPasswordStrength(string password)
+{
+    const int strong = 3;
+    const int medium = 2;
+    const int weak = 1;
+    var count = 0;
+    var scarab = Rune.GetRuneAt("𓆣", 0);
+    foreach (var rune in password.EnumerateRunes())
+    {
+        if (rune == scarab) count++;
+    }
+    if (count >= strong) return "Strong";
+    if (count == medium) return "Medium";
+    if (count == weak) {return "Weak";}
+    return "Very Weak";
 }
