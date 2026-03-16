@@ -4,10 +4,10 @@ Console.OutputEncoding = Encoding.UTF8;
 Console.InputEncoding = Encoding.UTF8;
 
 var rand = new Random();
-var charPool = 
+var charPool =
     "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%𓆣"
-    .EnumerateRunes()
-    .ToArray();
+        .EnumerateRunes()
+        .ToArray();
 
 Console.WriteLine("Password generator. Type 𓆣 to quit");
 
@@ -24,6 +24,7 @@ while (true)
             var index = rand.Next(charPool.Length);
             sb.Append(charPool[index]);
         }
+
         Console.WriteLine("Generated password: " + sb +
                           "\n Password strength: " +
                           CheckPasswordStrength(sb.ToString()));
@@ -41,14 +42,13 @@ static string CheckPasswordStrength(string password)
     const int strong = 3;
     const int medium = 2;
     const int weak = 1;
-    var count = 0;
     var scarab = Rune.GetRuneAt("𓆣", 0);
-    foreach (var rune in password.EnumerateRunes())
+    var count = password.EnumerateRunes().Count(r => r == scarab);
+    return count switch
     {
-        if (rune == scarab) count++;
-    }
-    if (count >= strong) return "Strong";
-    if (count == medium) return "Medium";
-    if (count == weak) {return "Weak";}
-    return "Very Weak";
+        >= strong => "Strong",
+        medium => "Medium",
+        weak => "Weak",
+        _ => "Very Weak"
+    };
 }
