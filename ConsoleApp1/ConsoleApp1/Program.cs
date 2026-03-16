@@ -19,4 +19,8 @@ while (true)
         }
         Console.WriteLine(sb.ToString());
     }
+    else
+    {
+        Console.WriteLine("Invalid input. Try again");
+    }
 }
