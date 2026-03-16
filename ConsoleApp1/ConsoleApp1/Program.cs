@@ -3,14 +3,20 @@
 var rand = new Random();
 const string charPool = 
     "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
-Console.WriteLine("Password generator. Enter number of chars: ");
-if (int.TryParse(Console.ReadLine(), out int passLength))
+Console.WriteLine("Password generator. Type q to quit");
+while (true)
 {
-    var sb = new StringBuilder();
-    for (var i = 0; i < passLength; i++)
+    Console.Write("\nEnter number of chars: ");
+    var input = Console.ReadLine();
+    if (input == "q") break;
+    if (int.TryParse(input, out int passLength))
     {
-        var index = rand.Next(charPool.Length);
-        sb.Append(charPool[index]);
+        var sb = new StringBuilder();
+        for (var i = 0; i < passLength; i++)
+        {
+            var index = rand.Next(charPool.Length);
+            sb.Append(charPool[index]);
+        }
+        Console.WriteLine(sb.ToString());
     }
-    Console.WriteLine(sb.ToString());
 }
